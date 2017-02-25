@@ -1,4 +1,4 @@
-""" Code that uses IBM Watson to convert text to mood """
+""" Code that uses IBM Watson to convert lyrics to mood """
 
 import requests
 import time
