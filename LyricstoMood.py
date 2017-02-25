@@ -4,11 +4,15 @@ import requests
 import time
 import serial
 import string
-import time
 import re
 import urllib
 
-def lyrics(artist,song):
+from difflib import SequenceMatcher
+
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
+
+"""def lyrics(artist,song):
     artist = artist.lower()
     song = song.lower()
     artist = re.sub('[^A-Za-z0-9]+', "", artist)
@@ -21,7 +25,7 @@ def lyrics(artist,song):
     lyrics = split[0]
     lyrics = re.sub('(<.*?>)',"",lyrics)
     print(lyrics)
-    return lyrics
+    return lyrics """
 
 # Supposed to return the lyrics to the song name passed in as a parameter
 # Needs to return a concatnated string of lyrics, search is not too efficient,
@@ -37,11 +41,15 @@ def binglyrics(search):
     if resp.status_code != 200:
         print(resp.status_code)
 
+    descriptionList = []
+
     respJson = resp.json()
     print(respJson)
     respVal = respJson['value']
     for a in range(0,len(respVal)):
         print(respVal[a]['description'])
+        descriptionList.append(respVal[a]['description'])
+
 
 # Supposed to return the percentages of mood found in a text
 def moods(text):
@@ -67,13 +75,12 @@ def moods(text):
     # write to serial
     thin = '{:,.2f} {:,.2f} {:,.2f} {:,.2f} {:,.2f}'.format(respInTones[0]['score'], respInTones[1]['score'],
     respInTones[2]['score'], respInTones[3]['score'],respInTones[4]['score'])
-
     ser.write(thin)
-
     ser.close()
 
     # Big thanks to Matt
 
-moods("I am sad.")
-lyrics("Dance Gavin Danve", "And They Say I Invented Times New Roman")
-moods(lyrics("Dance Gavin Danve", "And They Say I Invented Times New Roman"))
+#print(similar("Dance Gavin Danve And They Say I Invented Times New Roman", "Dance Gavin DanveAnd They Say I Invented Times New Roman"))
+#moods("I am sad.")
+binglyrics("Dance Gavin Dance lyrics")
+#moods(lyrics("Dance Gavin Danve", "And They Say I Invented Times New Roman"))
