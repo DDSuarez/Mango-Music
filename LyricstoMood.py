@@ -48,7 +48,7 @@ def moods(text):
 
     # iterates through the moods and returns the one with the highest percentage
     for a in range(0, len(respInTones)):
-        currPer = respIntones[a]['score']
+        currPer = respInTones[a]['score']
         if currPer > mostPer:
             mostPer = currPer
             mostTone = respInTones[a]['tone_name']
