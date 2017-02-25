@@ -19,6 +19,7 @@ def lyrics(search):
         print(resp.status_code)
 
     respJson = resp.json()
+    print(respJson)
     respVal = respJson['value']
     for a in range(0,len(respVal)):
         print(respVal[a]['description'])
@@ -41,39 +42,14 @@ def moods(text):
     respTones = respToneCat[0]
     respInTones = respTones['tones']
 
-    mostTone = ""
-    mostPer = 0
-    currTone = ""
-    currPer = 0
-
-    # iterates through the moods and returns the one with the highest percentage
-    for a in range(0, len(respInTones)):
-        currPer = respInTones[a]['score']
-        if currPer > mostPer:
-            mostPer = currPer
-            mostTone = respInTones[a]['tone_name']
-        print("Score" + str(respInTones[a]['score']) + " " + str(respInTones[a]['tone_name']))
-    
     # opening a serial port to send data to the Arduino
     ser = serial.Serial('/dev/ttyUSB0', 9600)
     time.sleep(2)
 
     # write to serial
-    ser.write(mostTone[0])
+    for a in range(0, len(respInTones)):
+        ser.write(str(respInTones[a]['score']) + " ")
 
     ser.close()
 
     # Big thanks to Matt
-
-#lyrics("crawling in my skin lyrics")
-
-#moods("""You tell me I'm running on lost time
-#            You tell me I'm dragging my heels
-#            Do you make the most out of our time
-#            Do you think you know how I feel """)
-
-#moods("""I need the fear of a love that's lost
-#            I need to stop trying to count the cost
-#            I need to fight on the losing side
-#            And always hold you
-#            I will always stay with you""")
