@@ -46,9 +46,13 @@ def moods(text):
     time.sleep(2)
 
     # write to serial
-    ser.write(str(respInTones[0]['score']) + " " + str(respInTones[1]['score']) + " " str(respInTones[2]['score'])
-    + " " + str(respInTones[3]['score']) + " " + str(respInTones[4]['score']))
+    thin = '{:,.2f} {:,.2f} {:,.2f} {:,.2f} {:,.2f}'.format(respInTones[0]['score'], respInTones[1]['score'], \
+    respInTones[2]['score'], respInTones[3]['score'],respInTones[4]['score'])
+
+    ser.write(thin)
 
     ser.close()
 
     # Big thanks to Matt
+
+moods("I am sad.")
