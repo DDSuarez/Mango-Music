@@ -26,8 +26,7 @@ def lyrics(search):
 
 # Supposed to return the percentages of mood found in a text
 def moods(text):
-    url = 'https://watson-api-explorer.mybluemix.net/tone-ana \
-    lyzer/api/v3/tone?version=2016-05-19'
+    url = 'https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone?version=2016-05-19'
     data = text
     username = '7144acc5-8b6b-4721-98c0-7696a547a450'
     password = 'W0LzbWyPDmsl'
@@ -47,8 +46,8 @@ def moods(text):
     time.sleep(2)
 
     # write to serial
-    for a in range(0, len(respInTones)):
-        ser.write(str(respInTones[a]['score']) + " ")
+    ser.write(str(respInTones[0]['score']) + " " + str(respInTones[1]['score']) + " " str(respInTones[2]['score'])
+    + " " + str(respInTones[3]['score']) + " " + str(respInTones[4]['score']))
 
     ser.close()
 
