@@ -6,51 +6,16 @@ import serial
 import time
 from PyLyrics import *
 
-{
-  "cloudantNoSQLDB": [
-    {
-      "credentials": {
-        "username": "235c39c8-714b-440d-9415-57876c2f9d02-bluemix",
-        "password": "44629e5f840cd905917778926e8846b37658a3c4bd626aaac6f6f706d0acce27",
-        "host": "235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com",
-        "port": 443,
-        "url": "https://235c39c8-714b-440d-9415-57876c2f9d02-bluemix:44629e5f840cd905917778926e8846b37658a3c4bd626aaac6f6f706d0acce27@235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com"
-      },
-      "syslog_drain_url": null,
-      "label": "cloudantNoSQLDB",
-      "provider": null,
-      "plan": "Lite",
-      "name": "MangoHacks-cloudantNoSQLDB",
-      "tags": [
-        "data_management",
-        "ibm_created",
-        "lite",
-        "ibm_dedicated_public"
-      ]
-    }
-  ]
-}
-
-
-def twitterGrab(search):
-    username = "c9fd668e-4e8e-4a9f-97ff-524b3282f8a9"
-    password = "VTw4ScwxgI"
-    host = "cdeservice.mybluemix.net"
-    port = 443
-    url = "https://cdeservice.mybluemix.net:443/api/v1/messages/search?1=" + search
-    header = {"Host":"cdeservice.mybluemix.net", "Port": 443, "Authorization": "Basic YzlmZDY2IGYtBGU4ZS00YTlmLTk3ZmYtNtI0YjMyODJmOGE501ZUdzRTY3d4Z0k="}
-    resp = requests.get(url, auth=(username, password), headers=header)
-
-    print(resp)
-
-def twitterDatabase()
+def twitterDB(search):
     username = "235c39c8-714b-440d-9415-57876cf9d02-bluemix"
     password = "44629e5f840cd905917778926e8846b37658a3c4bd626aaac6f6f706d0acce27"
     host = "235c39c8-714b-440d-941557876c2f9d02-bluemix.cloudant.com"
     port = 443
     url = "https://cdeservice.mybluemix.net:443/api/v1/messages/search?1=" + search
-    header = {"Host":"cdeservice.mybluemix.net", "Port": 443, "Authorization": "Basic YzlmZDY2IGYtBGU4ZS00YTlmLTk3ZmYtNtI0YjMyODJmOGE501ZUdzRTY3d4Z0k="}
+    header = {"Host":"235c39c8-714b-440d-941557876c2f9d02-bluemix.cloudant.com", "Port": 443, "Authorization": "Basic MjM1YzM5YzgtNzE0Yi00NDBkLTk0MTUtNTc4NzZjMmY5ZDAyLWJsdWVtaXg6NDQ2MjllNWY4NDBjZDkwNTkxNzc3ODkyNmU4ODQ2YjM3NjU4YTNjNGJkNjI2YWFhYzZmNmY3MDZkMGFjY2UyNw=="}
     resp = requests.get(url, auth=(username, password), headers=header)
+
+    print(resp)
 
 # Returns the percentages of mood found in a text
 def moods(text):
