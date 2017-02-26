@@ -37,30 +37,54 @@ for (int i = 0; i < 5; i++) {
  if (input[i] > greatest) {
   greatest = input[i];
   larg=i;
-}
+  }
 }
 
+  double angW = 255 * input[0];
+  double disW = 255 * input[1];
+  double fearW = 255 * input[2];
+  double joyW = 255 * input[3];
+  double sadW = 255 * input[4];
+
+  double firstBlendedR = 255 - sqrt(((255-angW)^2 + (255-0)^2)/2);
+  double firstBlendedG = 255 - sqrt(((255-0)^2 + (255-disW)^2)/2);
+  double firstBlendedB = 255 - sqrt(((255-0)^2 + (255-0)^2)/2);
+
+  double secondBlendedR = 255 - sqrt(((255-firstBlendedR)^2 + (255-fearW)^2)/2);
+  double secondBlendedG = 255 - sqrt(((255-firstBlendedG)^2 + (255-0)^2)/2);
+  double secondBlendedB = 255 - sqrt(((255-firstBlendedB)^2 + (255-fearW)^2)/2);
+
+  double thirdBlendedR = 255 - sqrt(((255-secondBlendedR)^2 + (255-joyW)^2)/2);
+  double thirdBlendedG = 255 - sqrt(((255-secondBlendedG)^2 + (255-joyW)^2)/2);
+  double thirdBlendedB = 255 - sqrt(((255-secondBlendedB)^2 + (255-0)^2)/2);
+
+  int finalBlendedR = 255 - sqrt(((255-thirdBlendedR)^2 + (255-0)^2)/2);
+  int finalBlendedG = 255 - sqrt(((255-thirdBlendedG)^2 + (255-0)^2)/2);
+  int finalBlendedB = 255 - sqrt(((255-thirdBlendedB)^2 + (255-sadW)^2)/2);
+
+  theaterChase(strip.Color(finalBlendedR, finalBlendedG, finalBlendedB));
+/*
   if (larg==0){                       // wait for a second
-  theaterChase(strip.Color(  255, 0, 0), timeLen); //red
+  theaterChase(strip.Color(255, 0, 0), timeLen); //red
   delay(500);
   }else if(larg==1){
-  theaterChase(strip.Color(  0, 255, 0), timeLen); //green
+  theaterChase(strip.Color(0, 255, 0), timeLen); //green
   delay(500); 
   }else if(larg==2){
-  theaterChase(strip.Color(  255, 0, 255), timeLen);//purple
+  theaterChase(strip.Color(255, 0, 255), timeLen);//purple
   delay(500); 
   }else if(larg==3){
-  theaterChase(strip.Color(  255, 255, 0), timeLen); //yellow
+  theaterChase(strip.Color(255, 255, 0), timeLen); //yellow
   delay(500); 
   }else if(larg==4){
-  theaterChase(strip.Color(  0, 0, 255), timeLen); //blue
+  theaterChase(strip.Color(0, 0, 255), timeLen); //blue
   delay(500); 
   }else{
-    theaterChase(strip.Color( 0,  0, 0), 1);//Off
+    theaterChase(strip.Color(0,  0, 0), 1);//Off
   }
   
     
-}
+} */
 
 
 //Theatre-style crawling lights.
