@@ -4,8 +4,6 @@ import requests
 import time
 import serial
 import time
-
-from difflib import SequenceMatcher
 from PyLyrics import *
 
 def twitterGrab():
@@ -57,9 +55,6 @@ song = "Uneasy Hearts Weigh the Most"
 print(PyLyrics.getLyrics(artist, song))
 moods(PyLyrics.getLyrics(artist, song))
 
-def similar(a, b):
-    return SequenceMatcher(None, a, b).ratio()
-
 # Supposed to return the lyrics to the song name passed in as a parameter
 # Needs to return a concatnated string of lyrics, search is not too efficient,
 # needs to be made efficient
@@ -82,8 +77,3 @@ def binglyrics(search):
     for a in range(0,len(respVal)):
         print(respVal[a]['description'])
         descriptionList.append(respVal[a]['description'])
-
-#print(similar("Dance Gavin Danve And They Say I Invented Times New Roman", "Dance Gavin DanveAnd They Say I Invented Times New Roman"))
-#moods("I am sad.")
-#binglyrics("Dance Gavin Dance And I Told Them I Invented Times New Roman lyrics")
-#moods(lyrics("Dance Gavin Danve", "And They Say I Invented Times New Roman"))
