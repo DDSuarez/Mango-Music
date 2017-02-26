@@ -4,7 +4,13 @@ import requests
 import time
 import serial
 import time
+import dropbox
 from PyLyrics import *
+
+twitterArtist = "Dance Gavin Dance"
+twitterSong = "Uneasy Hearts Weigh the Most"
+echoArtist = "Dance Gavin Dance"
+echoSong = "Uneasy Hearts Weigh the Most"
 
 def twitterDB():
     username = "235c39c8-714b-440d-9415-57876c2f9d02-bluemix"
@@ -17,7 +23,6 @@ def twitterDB():
 
     respID = resp.json()['rows'][0]['id']
     return respID
-    #print(resp.json())
 
 def getTweet(id):
     username = "235c39c8-714b-440d-9415-57876c2f9d02-bluemix"
@@ -29,8 +34,31 @@ def getTweet(id):
     resp = requests.get(url, auth=(username, password), headers=header)
 
     respTweet = resp.json()['tweet']['text']
-    print(respTweet)
+    print("Tweet: " + respTweet)
     return respTweet
+
+def echo():
+    dbx = dropbox.Dropbox('1uCFpS5a_WAAAAAAAAAADm8HRJFdJ6o-qi62nyHJX-N0h4k8OyjOj9Ypel1HO1Zz')
+    dbx.users_get_current_account()
+
+    metadat=dbx.files_download_to_file('/home/pi/Desktop/data.txt','/Amazon_Alexa/amazon_alexa_shopping.txt')
+    #print(metadat)
+    file = open('/home/pi/Desktop/data.txt','r')
+    lineList = file.readlines()
+    file.close()
+    cleanfile = str(lineList[-1:])
+    split = [] 
+    for x in range(5):
+        split.append(' ')
+
+    try:
+        simple = str(cleanfile[2:len(cleanfile)-4]) 
+        split = simple.split('by ')
+    except Exception as e:
+        split[0]='Never gonna give you up'
+        split.append('Rick Astley')
+
+    return split
 
 # Returns the percentages of mood found in a text
 def moods(text):
@@ -66,20 +94,23 @@ def moods(text):
 
     # Big thanks to Matt
 
-artist = "Dance Gavin Dance"
-song = "Uneasy Hearts Weigh the Most"
+twitterSongToMood = getTweet(twitterDB())
+songSplit = twitterSongToMood.split("by")
 
-songToMood = getTweet(twitterDB())
+twitterSong = songSplit[0]
+twitterArtist = songSplit[1].replace("#MangoMusic", "")
 
-songSplit = songToMood.split("by")
+echoSongSplit = echo()
+echoSong = echoSongSplit[0]
+echoArtist = echoSongSplit[1]
 
-song = songSplit[0]
-artist = songSplit[1].replace("#MangoMusic", "")
-
-print(song)
-print(artist)
-print(PyLyrics.getLyrics(artist, song))
-moods(PyLyrics.getLyrics(artist, song))
+print("Twitter song: " + twitterSong)
+print("Twitter artist: " + twitterArtist)
+print("Echo song: " + echoSong)
+print("Echo artist: " + echoArtist)
+#print(PyLyrics.getLyrics(artist, song))
+moods(PyLyrics.getLyrics(twitterArtist, twitterSong))
+moods(PyLyrics.getLyrics(echoArtist, echoSong))
 
 # Supposed to return the lyrics to the song name passed in as a parameter
 # Needs to return a concatnated string of lyrics, search is not too efficient,
