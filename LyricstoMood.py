@@ -56,7 +56,7 @@ song = "Uneasy Hearts Weigh the Most"
 
 #print(PyLyrics.getLyrics(artist, song))
 #moods(PyLyrics.getLyrics(artist, song))
-twitterGrab()
+twitterDB("mangohacks")
 
 # Supposed to return the lyrics to the song name passed in as a parameter
 # Needs to return a concatnated string of lyrics, search is not too efficient,
