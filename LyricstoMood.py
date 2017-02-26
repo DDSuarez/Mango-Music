@@ -111,26 +111,3 @@ print("Echo artist: " + echoArtist)
 #print(PyLyrics.getLyrics(artist, song))
 moods(PyLyrics.getLyrics(twitterArtist, twitterSong))
 moods(PyLyrics.getLyrics(echoArtist, echoSong))
-
-# Supposed to return the lyrics to the song name passed in as a parameter
-# Needs to return a concatnated string of lyrics, search is not too efficient,
-# needs to be made efficient
-def binglyrics(search):
-    url = "https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=" \
-    + search + "&count=10&offset=0&mkt=en-us&safeSearch=Moderate"
-
-    header = {'Host': 'api.cognitive.microsoft.com', \
-    'Ocp-Apim-Subscription-Key': 'a7c37c0e2b124cfe8e74f4824693d0f6'}
-
-    resp = requests.get(url, headers=header)
-    if resp.status_code != 200:
-        print(resp.status_code)
-
-    descriptionList = []
-
-    respJson = resp.json()
-    print(respJson)
-    respVal = respJson['value']
-    for a in range(0,len(respVal)):
-        print(respVal[a]['description'])
-        descriptionList.append(respVal[a]['description'])
