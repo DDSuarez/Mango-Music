@@ -11,7 +11,7 @@ def twitterDB(search):
     password = "44629e5f840cd905917778926e8846b37658a3c4bd626aaac6f6f706d0acce27"
     host = "235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com"
     port = 443
-    url = "https://cdeservice.mybluemix.net:443/api/v1/messages/search?1=" + search
+    url = "235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com/nodered/_all_docs"
     header = {"Host": host, "Port": 443, "Authorization": "Basic MjM1YzM5YzgtNzE0Yi00NDBkLTk0MTUtNTc4NzZjMmY5ZDAyLWJsdWVtaXg6NDQ2MjllNWY4NDBjZDkwNTkxNzc3ODkyNmU4ODQ2YjM3NjU4YTNjNGJkNjI2YWFhYzZmNmY3MDZkMGFjY2UyNw=="}
     resp = requests.get(url, auth=(username, password), headers=header)
 
