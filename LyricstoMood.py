@@ -8,7 +8,16 @@ import time
 from difflib import SequenceMatcher
 from PyLyrics import *
 
-# Supposed to return the percentages of mood found in a text
+def twitterGrab():
+    username = "c9fd668e-4e8e-4a9f-97ff-524b3282f8a9"
+    password = "VTw4ScwxgI"
+    host = "cdeservice.mybluemix.net"
+    port = 443
+    url = "https://c9fd668e-4e8e-4a9f-97ff-524b3282f8a9:VTw4ScwxgI@cdeservice.mybluemix.net"
+    header = {"content-type": "text/plain"}
+    resp = requests.get(url, auth=(username, password), headers=header)
+
+# Returns the percentages of mood found in a text
 def moods(text):
     url = 'https://watson-api-explorer.mybluemix.net/tone-analyzer/api/v3/tone?version=2016-05-19'
     data = text
@@ -50,22 +59,6 @@ moods(PyLyrics.getLyrics(artist, song))
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
-
-"""def lyrics(artist,song):
-    artist = artist.lower()
-    song = song.lower()
-    artist = re.sub('[^A-Za-z0-9]+', "", artist)
-    song = re.sub('[^A-Za-z0-9]+', "", song)
-    raw_html = urllib.urlopen("http://azlyrics.com/lyrics/"+str(artist)+"/"+str(song)+".html")
-    html_copy = str(raw_html.read())
-    split = html_copy.split('<!-- Usage of http://azlyrics.com     content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->',1)
-    split_html = split[1]
-    split = split_html.split('</div>',1)
-    lyrics = split[0]
-    lyrics = re.sub('(<.*?>)',"",lyrics)
-    print(lyrics)
-    return lyrics """
-
 
 # Supposed to return the lyrics to the song name passed in as a parameter
 # Needs to return a concatnated string of lyrics, search is not too efficient,
