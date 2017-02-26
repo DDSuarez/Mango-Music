@@ -35,6 +35,7 @@ def moods(text):
 
     ser.write(thin)
     
+    ser.write(thin)
     ser.close()
 
     # Big thanks to Matt
