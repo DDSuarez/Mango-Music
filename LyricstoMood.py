@@ -6,6 +6,32 @@ import serial
 import time
 from PyLyrics import *
 
+{
+  "cloudantNoSQLDB": [
+    {
+      "credentials": {
+        "username": "235c39c8-714b-440d-9415-57876c2f9d02-bluemix",
+        "password": "44629e5f840cd905917778926e8846b37658a3c4bd626aaac6f6f706d0acce27",
+        "host": "235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com",
+        "port": 443,
+        "url": "https://235c39c8-714b-440d-9415-57876c2f9d02-bluemix:44629e5f840cd905917778926e8846b37658a3c4bd626aaac6f6f706d0acce27@235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com"
+      },
+      "syslog_drain_url": null,
+      "label": "cloudantNoSQLDB",
+      "provider": null,
+      "plan": "Lite",
+      "name": "MangoHacks-cloudantNoSQLDB",
+      "tags": [
+        "data_management",
+        "ibm_created",
+        "lite",
+        "ibm_dedicated_public"
+      ]
+    }
+  ]
+}
+
+
 def twitterGrab(search):
     username = "c9fd668e-4e8e-4a9f-97ff-524b3282f8a9"
     password = "VTw4ScwxgI"
