@@ -51,22 +51,6 @@ moods(PyLyrics.getLyrics(artist, song))
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
-"""def lyrics(artist,song):
-    artist = artist.lower()
-    song = song.lower()
-    artist = re.sub('[^A-Za-z0-9]+', "", artist)
-    song = re.sub('[^A-Za-z0-9]+', "", song)
-    raw_html = urllib.urlopen("http://azlyrics.com/lyrics/"+str(artist)+"/"+str(song)+".html")
-    html_copy = str(raw_html.read())
-    split = html_copy.split('<!-- Usage of http://azlyrics.com     content by any third-party lyrics provider is prohibited by our licensing agreement. Sorry about that. -->',1)
-    split_html = split[1]
-    split = split_html.split('</div>',1)
-    lyrics = split[0]
-    lyrics = re.sub('(<.*?>)',"",lyrics)
-    print(lyrics)
-    return lyrics """
-
-
 # Supposed to return the lyrics to the song name passed in as a parameter
 # Needs to return a concatnated string of lyrics, search is not too efficient,
 # needs to be made efficient
