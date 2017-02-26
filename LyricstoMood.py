@@ -6,16 +6,31 @@ import serial
 import time
 from PyLyrics import *
 
-def twitterDB(search):
+def twitterDB():
     username = "235c39c8-714b-440d-9415-57876c2f9d02-bluemix"
     password = "44629e5f840cd905917778926e8846b37658a3c4bd626aaac6f6f706d0acce27"
     host = "235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com"
     port = 443
-    url = "235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com/nodered/_all_docs"
+    url = "http://235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com/nodered/_all_docs"
     header = {"Host": host, "Port": 443, "Authorization": "Basic MjM1YzM5YzgtNzE0Yi00NDBkLTk0MTUtNTc4NzZjMmY5ZDAyLWJsdWVtaXg6NDQ2MjllNWY4NDBjZDkwNTkxNzc3ODkyNmU4ODQ2YjM3NjU4YTNjNGJkNjI2YWFhYzZmNmY3MDZkMGFjY2UyNw=="}
     resp = requests.get(url, auth=(username, password), headers=header)
 
-    print(resp)
+    respID = resp.json()['rows'][0]['id']
+    return respID
+    #print(resp.json())
+
+def getTweet(id):
+    username = "235c39c8-714b-440d-9415-57876c2f9d02-bluemix"
+    password = "44629e5f840cd905917778926e8846b37658a3c4bd626aaac6f6f706d0acce27"
+    host = "235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com"
+    port = 443
+    url = "https://235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com/nodered/" + id
+    header = {"Host": host, "Port": 443, "Authorization": "Basic MjM1YzM5YzgtNzE0Yi00NDBkLTk0MTUtNTc4NzZjMmY5ZDAyLWJsdWVtaXg6NDQ2MjllNWY4NDBjZDkwNTkxNzc3ODkyNmU4ODQ2YjM3NjU4YTNjNGJkNjI2YWFhYzZmNmY3MDZkMGFjY2UyNw=="}
+    resp = requests.get(url, auth=(username, password), headers=header)
+
+    respTweet = resp.json()['tweet']['text']
+    print(respTweet)
+    return respTweet
 
 # Returns the percentages of mood found in a text
 def moods(text):
@@ -54,9 +69,17 @@ def moods(text):
 artist = "Dance Gavin Dance"
 song = "Uneasy Hearts Weigh the Most"
 
-#print(PyLyrics.getLyrics(artist, song))
-#moods(PyLyrics.getLyrics(artist, song))
-twitterDB("mangohacks")
+songToMood = getTweet(twitterDB())
+
+songSplit = songToMood.split("by")
+
+song = songSplit[0]
+artist = songSplit[1].replace("#MangoMusic", "")
+
+print(song)
+print(artist)
+print(PyLyrics.getLyrics(artist, song))
+moods(PyLyrics.getLyrics(artist, song))
 
 # Supposed to return the lyrics to the song name passed in as a parameter
 # Needs to return a concatnated string of lyrics, search is not too efficient,
