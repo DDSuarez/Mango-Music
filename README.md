@@ -1,4 +1,4 @@
-# Mango-Hacks-2017
+# Mango Music
 
 The project for the Mango Hacks 2017 hackathon held at Florida International University from Febuary 24, 2017 - Febuary 26, 2017.
 
