@@ -20,7 +20,6 @@ def twitterDB():
     url = "http://235c39c8-714b-440d-9415-57876c2f9d02-bluemix.cloudant.com/nodered/_all_docs"
     header = {"Host": host, "Port": 443, "Authorization": "Basic MjM1YzM5YzgtNzE0Yi00NDBkLTk0MTUtNTc4NzZjMmY5ZDAyLWJsdWVtaXg6NDQ2MjllNWY4NDBjZDkwNTkxNzc3ODkyNmU4ODQ2YjM3NjU4YTNjNGJkNjI2YWFhYzZmNmY3MDZkMGFjY2UyNw=="}
     resp = requests.get(url, auth=(username, password), headers=header)
-
     respID = resp.json()['rows'][0]['id']
     return respID
 
@@ -111,3 +110,4 @@ print("Echo artist: " + echoArtist)
 #print(PyLyrics.getLyrics(artist, song))
 moods(PyLyrics.getLyrics(twitterArtist, twitterSong))
 moods(PyLyrics.getLyrics(echoArtist, echoSong))
+moods(PyLyrics.getLyrics("Dance Gavin Dance", "Lemon Meringue Tie"))
